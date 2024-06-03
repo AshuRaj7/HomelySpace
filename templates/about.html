@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | HomelySpace</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .title{
+            background-image: url("{%static 'im3.jpg' %}");
+        }
+    </style>
+    
+</head>
+{% endblock %}
+{% block content %}
+
+    
+    <!-- Hero Section -->
+    <section class="title bg-cover bg-center h-96" >
+        <div class="bg-black bg-opacity-50 h-full flex items-center justify-center">
+            <div class="text-center text-white px-4">
+                <h2 class="text-5xl font-bold mb-4 shadow-lg">About HomelySpace</h2>
+                <p class="text-xl">Your trusted partner in finding the perfect home.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Introduction Section -->
+        <section class="mb-12">
+            <h2 class="text-4xl font-bold mb-4 text-center shadow-sm">Our Journey</h2>
+            <p class="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto text-center">
+                Welcome to HomelySpace, your number one source for all things real estate. We're dedicated to giving you the very best of property listings, with a focus on dependability, customer service, and uniqueness.
+            </p>
+            <p class="text-gray-700 text-lg leading-relaxed mt-4 max-w-4xl mx-auto text-center">
+                Founded in 2020 by Jane Doe, HomelySpace has come a long way from its beginnings. When Jane first started out, her passion for helping people find their perfect home drove her to start her own business.
+            </p>
+        </section>
+
+        
+
+        <!-- Company Values Section -->
+        <section class="mb-12">
+            <h2 class="text-4xl font-bold mb-8 text-center shadow-sm">Our Values</h2>
+            <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 flex-1">
+                    <h3 class="text-2xl font-bold text-center mb-4">Integrity</h3>
+                    <p class="text-gray-700 leading-relaxed text-center">
+                        We believe in being honest and having strong moral principles. Our integrity is what makes us reliable and trustworthy in the real estate industry.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 flex-1">
+                    <h3 class="text-2xl font-bold text-center mb-4">Customer Service</h3>
+                    <p class="text-gray-700 leading-relaxed text-center">
+                        We put our customers first and strive to meet their needs with exceptional service. Your satisfaction is our priority.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 flex-1">
+                    <h3 class="text-2xl font-bold text-center mb-4">Innovation</h3>
+                    <p class="text-gray-700 leading-relaxed text-center">
+                        We are committed to staying ahead of the curve with innovative solutions and services that enhance your home buying experience.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+       
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 HomelySpace. All rights reserved.</p>
+        </div>
+    </footer>
+{% endblock %}

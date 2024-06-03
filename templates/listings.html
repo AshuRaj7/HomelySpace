@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomelySpace</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+<h2 class="lg:text-4xl text-2xl text-blue-900 text-center font-semibold  shadow-sm pt-20">HomelySpace Welcomes You</h2>
+<div class="container mx-auto pt-20 px-4 py-8">
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {% for property in properties %}
+    <div class="max-w-xs rounded overflow-hidden shadow-lg bg-white">
+      <img class="w-full" src="{{ property.image1.url }}" alt="Property Image">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">{{ property.address }}</div>
+        <p class="text-red-700 font-semibold text-base mb-2">Price: {{ property.price }}L</p>
+      </div>
+      <div class="px-6 py-4">
+        <a href="{% url 'details' property.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">More Details</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>  
+</div>
+<div class="flex  mb-10 justify-center mt-6">
+  {% if properties.has_other_pages %}
+    <ul class="flex pagination space-x-2">
+        {% if properties.has_previous %}
+        <li><a href="?page={{ properties.previous_page_number }}" class="px-4 py-2 rounded bg-blue-200 hover:bg-blue-500"><</a></li>
+        {% endif %}
+        {% for num in properties.paginator.page_range %}
+        {% if properties.number == num %}
+        <li class="px-4 py-2 -mt-2 rounded bg-teal-400">{{ num }}</li>
+        {% else %}
+        <li><a href="?page={{ num }}" class="px-4 py-2 rounded bg-blue-200 hover:bg-blue-500">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if properties.has_next %}
+        <li><a href="?page={{ properties.next_page_number }}" class="px-4 py-2 rounded bg-blue-200 hover:bg-blue-500">></a></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+    </div>
+{% endblock %}

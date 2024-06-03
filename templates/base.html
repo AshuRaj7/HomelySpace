@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+  
+    {% load static %}
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomelySpace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    {% endblock %}
+    <script>
+        function toggleNavbar() {
+            var navbar = document.getElementById('navbar');
+            navbar.classList.toggle('hidden');
+        }
+    </script>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="flex items-center justify-between flex-wrap overflow-hidden fixed w-screen z-10 bg-blue-900 opacity-80 p-4">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+            <span class="font-semibold text-xl tracking-tight ml-2">HomelySpace</span>
+        </div>
+        <div class="block   lg:hidden">
+            <button class="flex items-center px-3 py-2 border rounded text-white border-white hover:text-gray-200 hover:border-gray-200" onclick="toggleNavbar()">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 5h20v2H0V8zm0 5h20v2H0v-2z"/></svg>
+            </button>
+        </div>
+        <div class="flex ml-auto  w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block" id="navbar">
+            <div class="text-sm ml-auto lg:font-semibold lg:flex-grow lg:text-center">
+                <a href="{% url 'home' %}" class="inline-block text-center mt-4 lg:inline-block lg:mt-0 text-white  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-125  duration-300 mr-4">
+                    Home
+                </a>
+                <a href="{% url 'search' %}" class="inline-block mt-4 lg:inline-block lg:mt-0 text-white transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-125  duration-300 mr-4">
+                    Search
+                </a>
+                <a href="{% url 'listing' %}" class="inline-block mt-4 lg:inline-block lg:mt-0 text-white transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-125  duration-300 mr-4">
+                    Listings
+                </a>
+                <a href="{% url 'about' %}" class="inline-block mt-4 lg:inline-block lg:mt-0 text-white transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-125  duration-300 mr-4">
+                    About
+                </a>
+                <a href="{% url 'agents' %}" class="inline-block mt-4 lg:inline-block lg:mt-0 text-white transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-125  duration-300 mr-4">
+                    Agents
+                </a>
+                <a href="{% url 'contact' %}" class="inline-block mt-4 lg:inline-block lg:mt-0 text-white transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-125  duration-300 mr-4">
+                    Contact
+                </a>
+            </div>
+        
+        <div class="flex items-center flex-shrink-0 text-right text-bold text-white mr-6">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="inline-block mt-4 lg:inline-block lg:mt-0 text-white hover:text-red-500 mr-4">
+                    Logout
+                </a>
+            
+                {% else %}
+                <a href="{% url 'login' %}" class="inline-block  lg:inline-block lg:mt-0 text-white hover:underline mr-4">
+                    Login/Register
+                </a>
+                {% endif %}
+        </div>
+    </div>          
+    </nav>
+    <main class="flex-grow">
+       
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

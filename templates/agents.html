@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomelySpace</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    nav{
+        overflow: hidden;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<!-- Team Section -->
+<section class="mb-12 pt-20 flex flex-wrap justify-center items-center">
+    <h2 class="text-4xl font-bold mb-10 mt-8 text-center shadow-lg">Meet Our Team</h2>
+    <div class="lg:w-5/6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-sky-200 bg-opacity-15 p-6 rounded-2xl shadow-lg hover:shadow-2xl  transition-shadow duration-300">
+            <img src="{%static 'guna.jpg' %}" alt="Guna" class="w-32 h-32 rounded-full mx-auto">
+            <h3 class="text-xl font-bold mt-4 text-center">Guna Shekar</h3>
+            <p class="text-green-600 font-semibold text-center">Chief Marketing Officer</p>
+            <p class="text-gray-500 mt-4 text-center">Guna's marketing expertise helps us reach more people and share our passion for real estate.</p>
+        </div>
+
+        <div class=" p-6 rounded-2xl shadow-lg hover:shadow-2xl bg-opacity-20 bg-yellow-100 transition-shadow duration-300">
+            <img src="{%static 'ak.jpg' %}" alt="WolF" class="w-32 h-32 rounded-full mx-auto">
+            <h3 class="text-xl font-bold mt-4 text-center">WolF</h3>
+            <p class="text-green-600 font-semibold text-center">Founder & CEO</p>
+            <p class="text-gray-500 mt-4 text-center">WolF is dedicated to helping people find their dream homes with ease and reliability.</p>
+        </div>
+       
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <img src="{%static 'file.jpg' %}" alt="Sara Lee" class="w-32 h-32 rounded-full mx-auto">
+            <h3 class="text-xl font-bold mt-4 text-center">Sara Lee</h3>
+            <p class="text-green-600 font-semibold text-center">Head of Sales</p>
+            <p class="text-gray-500 mt-4 text-center">Sara's commitment to excellence ensures that our clients find the perfect homes for their needs.</p>
+        </div>
+    </div>
+    <h2 class="text-4xl font-bold text-center mt-10 shadow-lg mb-12">Meet Our Agents</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {% for agent in agents %}
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex justify-center mb-4">
+                    <img src="{{ agent.profile_picture.url }}" alt="{{ agent.name }}" class="w-32 h-32 rounded-full">
+                </div>
+                <h3 class="text-xl font-bold text-center mb-2">{{ agent.name }}</h3>
+                <p class="text-teal-700 font-semibold text-center">{{ agent.title }}</p>
+                <p class="text-gray-500 mt-4 text-center">{{ agent.description }}</p>
+                <h3 class="text-xl text-blue-800 font-bold text-center mb-2">Call: {{ agent.phone }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+</section>
+{% endblock %}  

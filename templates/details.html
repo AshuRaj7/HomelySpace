@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mx-auto pt-20 px-4 py-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg">
+        <img class="w-full rounded-t-lg" src="{{ property.image1.url }}" alt="Property Image">
+        <div class="px-6 py-4">
+            
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">{{ property.address }}</h2>
+                    <p class="text-lg text-gray-600">{{ property.city }}, {{ property.state }}</p>
+                </div>
+                <div>
+                    <p class="text-lg font-bold text-gray-800">RS:{{ property.price }}L</p>
+                </div>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-4 ">
+                
+                <div>
+                    <p class="text-gray-700"><b>Description:</b></p>
+                    <p class="text-gray-700">{{ property.description }}</p>
+                </div>
+                <div class="text-end">
+                    <p class="text-gray-700"><b>Bedrooms:</b> {{ property.bedrooms }}</p>
+                    <p class="text-gray-700"><b>Bathrooms:</b> {{ property.bathrooms }}</p>
+                    <p class="text-gray-700"><b>Area:</b> {{ property.area }} sqft</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {% if property.image2 %}
+            <img class="w-full h-48 object-cover rounded-lg" src="{{ property.image2.url }}" alt="Property Image 2">
+            {% endif %}
+            {% if property.image3 %}
+            <img class="w-full h-48 object-cover rounded-lg" src="{{ property.image3.url }}" alt="Property Image 3">
+            {% endif %}
+            {% if property.image4 %}
+            <img class="w-full h-48 object-cover rounded-lg" src="{{ property.image4.url }}" alt="Property Image 4">
+            {% endif %}
+            {% if property.image5 %}
+            <img class="w-full h-48 object-cover rounded-lg" src="{{ property.image5.url }}" alt="Property Image 5">
+            {% endif %}
+            {% if property.image6 %}
+            <img class="w-full h-48 object-cover rounded-lg" src="{{ property.image6.url }}" alt="Property Image 6">
+            {% endif %}
+            {% if property.image7 %}
+            <img class="w-full h-48 object-cover rounded-lg" src="{{ property.image7.url }}" alt="Property Image 7">
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

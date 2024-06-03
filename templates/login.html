@@ -1,0 +1,92 @@
+{% extends 'home.html' %}
+{% load static %}
+{%block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomelySpace</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'log.css' %}">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Flip to sign up
+            document.getElementById('flipBtn').addEventListener('click', function (event) {
+                event.preventDefault();
+                document.querySelector('.flip-container').classList.add('flip');
+            });
+        
+            // Flip to login
+            document.getElementById('flipBackBtn').addEventListener('click', function (event) {
+                event.preventDefault();
+                document.querySelector('.flip-container').classList.remove('flip');
+            });
+        });
+        function toggleNavbar() {
+            var navbar = document.getElementById('navbar');
+            navbar.classList.toggle('hidden');
+        }
+        </script>
+        <style>
+            body{
+                background-image: url("{%static 'a.jpg'  %}");
+                background-repeat: no-repeat;
+                background-size: cover;
+                overflow: hidden;
+            }
+
+        </style>
+{% endblock %}
+{% block bodyy %}
+<div class="flip-container lg:pt-10 md:pt-10 flex justify-center items-center ">
+    <div class="w-full  sm:w-2/3 md:w-1/2 lg:w-1/3 ">
+        {% if messages %}
+        <ul class="messages">
+            {% for msg in messages %}
+            <li class="text-red-500">{{msg}}</li>
+            {%endfor%}
+        </ul>
+        {%endif%}
+        <div class="flipper">
+            <!-- Front side -->
+            <div class="front p-8 bg-white bg-opacity-20 rounded-lg shadow-md">
+                <h2 class="text-center text-white  text-2xl font-bold mb-4 -mt-4">Login</h2>
+                <form action="{% url 'login' %}"  method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="username" class="block text-white font-semibold">Username</label>
+                        <input type="text" id="username" name="username" class="w-full p-8 bg-white bg-opacity-20 border rounded px-3 py-2">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-white font-semibold">Password</label>
+                        <input type="password" id="password" name="password" class="w-full p-8 bg-white bg-opacity-20 border rounded px-3 py-2">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-500 bg-opacity-50 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">Login</button>
+                </form>
+                <p class="text-center text-white mt-4">Don't have an account? <a href="#" id="flipBtn" class="text-blue-500">Sign Up</a></p>
+            </div>
+            <!-- Back side -->
+            <div class="back p-8 bg-white bg-opacity-20 rounded-lg shadow-md">
+                <h2 class="text-center text-white text-2xl font-bold mb-4 -mt-4">Sign Up</h2>
+                <form action="{% url 'signup' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="newUsername" class="block text-white font-semibold">Username</label>
+                        <input type="text" id="newUsername" name="username" class="w-full bg-white bg-opacity-20 border rounded px-3 py-2" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-white font-semibold">Email</label>
+                        <input type="email" id="email" name="email" class="w-full bg-white bg-opacity-20 border rounded px-3 py-2" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="newPassword" class="block text-white font-semibold">Password</label>
+                        <input type="password" id="newPassword" name="password" class="w-full bg-white bg-opacity-20 border rounded px-3 py-2" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-500 bg-opacity-50 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">Sign Up</button>
+                </form>
+                <p class="text-center text-white mt-4">Don't have an account? <a href="#" id="flipBackBtn" class="text-blue-500">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
